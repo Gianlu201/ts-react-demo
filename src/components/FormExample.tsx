@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
 interface Reservation {
@@ -23,11 +23,37 @@ const FormExample = () => {
   const [reservation, setReservation] =
     useState<Reservation>(initialReservation);
 
+  // se si vuole definire separatamente una handler per l'onChange,
+  // l'onSubmit e cia così, ricorda che il riferimento al tipo
+  // della "e" (l'evento) non sopravvive e va passato a mano
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      const URL: string =
+        'https://striveschool-api.herokuapp.com/api/reservation';
+      const response = await fetch(URL, {
+        method: 'POST',
+        body: JSON.stringify(reservation),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (response.ok) {
+        alert('GRAZIE');
+        setReservation(initialReservation);
+      } else {
+        throw new Error('Errore API');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Container>
       <Row className='justify-content-center'>
         <Col xs={12} md={8}>
-          <Form>
+          <Form onSubmit={(e) => handleSubmit(e)}>
             <Form.Group className='mb-3' controlId='formBasicEmail'>
               <Form.Label>Nome</Form.Label>
               <Form.Control
