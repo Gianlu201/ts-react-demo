@@ -1,8 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-// import ClassComponent from './components/ClassComponent';
-// import FuncComponent from './components/FuncComponent';
+import ClassComponent from './components/ClassComponent';
+import FuncComponent from './components/FuncComponent';
 import FormExample from './components/FormExample';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import PageChooser from './components/PageChooser';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -17,7 +20,20 @@ function App() {
 
       <FuncComponent title='Titolo' /> */}
 
-      <FormExample />
+      {/* <FormExample /> */}
+
+      <BrowserRouter>
+        <PageChooser />
+
+        <Routes>
+          <Route path='/' element={<></>} />
+          <Route path='/class' element={<ClassComponent title='ciao' />} />
+          <Route path='/func' element={<FuncComponent title='ciao' />} />
+          <Route path='/form' element={<FormExample />} />
+          <Route path='/fetch' element={<FormExample />} />
+          <Route path='/*' element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
