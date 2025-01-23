@@ -6,6 +6,7 @@ import FormExample from './components/FormExample';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PageChooser from './components/PageChooser';
 import NotFound from './components/NotFound';
+import FetchComponent from './components/FetchComponent';
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
           <Route path='/class' element={<ClassComponent title='ciao' />} />
           <Route path='/func' element={<FuncComponent title='ciao' />} />
           <Route path='/form' element={<FormExample />} />
-          <Route path='/fetch' element={<FormExample />} />
+          <Route path='/fetch' element={<FetchComponent />} />
           <Route path='/*' element={<NotFound />} />
         </Routes>
       </BrowserRouter>
