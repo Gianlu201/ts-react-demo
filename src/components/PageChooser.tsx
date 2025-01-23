@@ -64,6 +64,17 @@ const PageChooser = () => {
       >
         <li className='me-2'>FETCH</li>
       </Link>
+
+      <Link
+        to='/moviegallery'
+        className={
+          location.pathname === '/moviegallery'
+            ? 'text-black'
+            : 'text-black text-decoration-none'
+        }
+      >
+        <li className='me-2'>MOVIE GALLERY</li>
+      </Link>
     </ul>
   );
 };
